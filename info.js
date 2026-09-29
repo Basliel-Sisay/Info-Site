@@ -30,6 +30,14 @@ const server = http.createServer(async (req,res)=>{
         });
         res.end(data);
     }
+    else if(req.url==='/styles.css'){
+        const route=path.join(__dirname,'styles.css');
+        const data=await fs.readFile(route);
+        res.writeHead(200,{
+            'Content-Type': 'text/css',
+        });
+        res.end(data);
+    }
     else{
         const route=path.join(__dirname,'404.html');
         const data=await fs.readFile(route,{encoding:'utf-8'});
